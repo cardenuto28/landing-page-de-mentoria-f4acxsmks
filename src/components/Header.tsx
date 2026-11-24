@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { BRAND, HERO } from '@/lib/site-content'
-import logoDealer from '@/assets/preto-logo-4c160.png'
+import logoDealer from '@/assets/whatsapp-image-2026-11-24-at-20.04.35-d24d7.jpeg'
 
 export default function Header() {
   useEffect(() => {
@@ -18,14 +18,14 @@ export default function Header() {
       <div className="mx-auto flex h-20 max-w-[1160px] items-center justify-between px-5">
         <a
           href="/"
-          className="flex shrink-0 items-center rounded-md bg-white px-2 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E11D2E]"
+          className="flex shrink-0 items-center rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E11D2E]"
         >
           <img
             src={logoDealer}
             alt={BRAND.name}
-            width={1660}
-            height={330}
-            className="h-9 w-auto sm:h-11 md:h-[52px]"
+            width={1280}
+            height={256}
+            className="h-10 w-auto sm:h-12 md:h-14"
           />
         </a>
         <a href="#diagnostico" className="btn-primary btn-small">
