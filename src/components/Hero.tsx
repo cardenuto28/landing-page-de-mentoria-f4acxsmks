@@ -20,15 +20,15 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Coluna da foto */}
-        <figure className="relative overflow-hidden rounded-2xl">
+        {/* Coluna da foto (retrato 4:5, 480×600) */}
+        <figure className="relative mx-auto w-full max-w-[480px] overflow-hidden rounded-2xl md:mx-0">
           <img
             src="/visual-edits/fotos-rick2-ede6bf0a.jpg"
             alt={HERO.photoAlt}
             loading="eager"
             width={480}
             height={600}
-            className="h-auto w-full object-cover"
+            className="h-auto w-full"
           />
           <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 text-sm">
             <p className="font-semibold text-white">{HERO.photoCaption1}</p>

@@ -4,16 +4,16 @@ import fotoPendente from '@/assets/foto-pendente-placeholder.svg'
 export default function QuemConduz() {
   return (
     <section className="bg-[#0B0B0B] py-24">
-      <div className="mx-auto grid max-w-[1160px] items-start gap-14 px-5 md:grid-cols-[1fr_1.2fr]">
-        {/* Coluna esquerda — foto do fundador */}
-        <figure className="relative overflow-hidden rounded-2xl">
+      <div className="mx-auto grid max-w-[1160px] items-center gap-14 px-5 md:grid-cols-[1fr_1.2fr]">
+        {/* Coluna esquerda — foto do fundador (retrato 4:5, 480×600) */}
+        <figure className="relative mx-auto w-full max-w-[480px] overflow-hidden rounded-2xl md:mx-0">
           <img
             src={fotoPendente}
             alt={QUEM_CONDUZ.photoCaption1}
             loading="lazy"
             width={480}
             height={600}
-            className="h-auto w-full object-cover"
+            className="h-auto w-full"
           />
           <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 text-sm">
             <p className="font-semibold text-white">{QUEM_CONDUZ.photoCaption1}</p>
