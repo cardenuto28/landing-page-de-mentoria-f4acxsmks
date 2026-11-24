@@ -1,25 +1,29 @@
-/* 404 Page - Displays when a user attempts to access a non-existent route - translate to the language of the user */
-import { useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { ArrowLeft, Compass } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
-const NotFound = () => {
-  const location = useLocation()
-
-  useEffect(() => {
-    console.error('404 Error: User attempted to access non-existent route:', location.pathname)
-  }, [location.pathname])
-
+export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+    <div className="min-h-dvh flex items-center justify-center px-4">
+      <div className="max-w-lg w-full text-center space-y-6">
+        <Compass className="h-14 w-14 text-[#E11D2E] mx-auto" aria-hidden="true" />
+        <p className="text-sm font-bold uppercase tracking-widest text-[#FF5A6B]">Erro 404</p>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-white">
+          Ops! Página não encontrada.
+        </h1>
+        <p className="text-slate-400">
+          A página que você procura não existe ou foi movida. Volte para a home e continue sua
+          evolução.
+        </p>
+        <Button
+          asChild
+          className="bg-[#E11D2E] hover:bg-[#c11426] text-white font-bold rounded-xl border-0"
+        >
+          <Link to="/">
+            <ArrowLeft className="h-4 w-4 mr-2" /> Voltar para a Home
+          </Link>
+        </Button>
       </div>
     </div>
   )
 }
-
-export default NotFound

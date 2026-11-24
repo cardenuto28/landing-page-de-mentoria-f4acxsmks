@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 
 export default function Termos() {
   useEffect(() => {
-    document.title = 'Termos de Uso | Mentoria Ricardo Silveira'
+    document.title = 'Termos de Uso | Dealer Evolution'
   }, [])
 
   return (
@@ -16,7 +16,7 @@ export default function Termos() {
             <ArrowLeft className="h-4 w-4 mr-2" /> Voltar para o início
           </Link>
         </Button>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#E8A33D]/10 text-[#F6C56A] border border-[#E8A33D]/20 mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#E11D2E]/10 text-[#FF5A6B] border border-[#E11D2E]/20 mb-3">
           <Shield className="h-3.5 w-3.5" /> Condições Gerais
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-white">Termos de Uso</h1>
@@ -27,29 +27,29 @@ export default function Termos() {
         <section className="space-y-2">
           <h2 className="text-base font-bold text-white">1. Objeto e Natureza do Serviço</h2>
           <p>
-            A Mentoria Ricardo Silveira consiste em um programa educacional e de orientação
-            estratégica executiva fornecido em formato híbrido (aulas gravadas, encontros ao vivo em
-            grupo e/ou sessões individuais, a depender do plano contratado).
+            Os programas de mentoria da Dealer Evolution consistem em serviços educacionais e de
+            orientação estratégica executiva fornecidos em formato híbrido (encontros ao vivo,
+            sessões individuais e materiais de apoio, a depender do programa contratado), com base
+            na metodologia Dealer Evolution®.
           </p>
         </section>
 
         <section className="space-y-2">
           <h2 className="text-base font-bold text-white">2. Propriedade Intelectual</h2>
           <p>
-            Todos os materiais didáticos, planilhas, modelos de contrato, apresentações e gravações
-            disponibilizados durante a mentoria são de titularidade exclusiva de Ricardo Silveira e
-            protegidos pela Lei de Direitos Autorais. É estritamente vedado o compartilhamento,
+            Todos os materiais didáticos, frameworks, apresentações, planilhas e gravações
+            disponibilizados durante os programas são de titularidade exclusiva da Dealer Evolution
+            e protegidos pela Lei de Direitos Autorais. É estritamente vedado o compartilhamento,
             reprodução, revenda ou cessão de acessos a terceiros sem autorização prévia por escrito.
           </p>
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-base font-bold text-white">3. Garantia Incondicional de 7 Dias</h2>
+          <h2 className="text-base font-bold text-white">3. Agendamento e Remarcação de Sessões</h2>
           <p>
-            Em conformidade com o Código de Defesa do Consumidor e para assegurar a satisfação
-            integral do aluno, oferecemos garantia incondicional de 7 (sete) dias corridos contados
-            a partir da data de confirmação do pagamento. O cancelamento pode ser solicitado por
-            e-mail com estorno integral do valor pago.
+            As sessões de diagnóstico e de mentoria devem ser agendadas com antecedência mínima de
+            24 horas. Remarcações solicitadas com menos de 24 horas de antecedência ou ausências não
+            comunicadas poderão ser consideradas sessão realizada.
           </p>
         </section>
 
@@ -57,10 +57,9 @@ export default function Termos() {
           <h2 className="text-base font-bold text-white">4. Isenção de Promessa de Ganhos Fixos</h2>
           <p>
             A mentoria fornece ferramentas metodológicas, orientações analíticas e direcionamento
-            tático. No entanto, os resultados financeiros, profissionais e comerciais dependem da
-            execução individual, dedicação, condições do mercado e perfil de cada participante.
-            Nenhuma promessa de faturamento automático ou garantia de êxito econômico é expressa ou
-            implícita.
+            tático. Os resultados comerciais, financeiros e organizacionais dependem da execução
+            individual, da dedicação e das condições de mercado de cada empresa. Nenhuma promessa de
+            faturamento automático ou garantia de êxito econômico é expressa ou implícita.
           </p>
         </section>
 
@@ -69,11 +68,8 @@ export default function Termos() {
           <p>
             Para esclarecimentos sobre estes termos ou solicitações administrativas, entre em
             contato via e-mail em{' '}
-            <a
-              href="mailto:contato@mentoriaricardosilveira.com.br"
-              className="text-[#E8A33D] underline"
-            >
-              contato@mentoriaricardosilveira.com.br
+            <a href="mailto:contato@dealerevolution.com.br" className="text-[#E11D2E] underline">
+              contato@dealerevolution.com.br
             </a>
             .
           </p>
