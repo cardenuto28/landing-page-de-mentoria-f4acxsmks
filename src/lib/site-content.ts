@@ -17,8 +17,6 @@ export const BRAND = {
  *   não existir em src/assets/, o Hero usa um placeholder SVG local sinalizado
  *   ("Foto original do PDF pendente"). A foto de Quem Conduz já foi recebida.
  *   Ao receber a foto do Hero, salvá-la em src/assets/ e apontar o <img> para ela.
- * - RESPOSTAS DO FAQ: as 7 perguntas estão na prancha, mas as respostas
- *   ainda não foram definidas pelo proprietário.
  * - ETAPAS 2–4 DO FORMULÁRIO: a infraestrutura multi-step está pronta; as
  *   perguntas dessas etapas aguardam definição do proprietário.
  * - INTEGRAÇÃO DE LEADS: o formulário não tem backend; destino real dos
@@ -28,7 +26,6 @@ export const BRAND = {
  */
 export const PENDENCIAS_DO_PROPRIETARIO = [
   'Foto original do PDF (Ricardo Cardenuto — Hero)',
-  'Respostas das 7 perguntas do FAQ',
   'Perguntas das etapas 2–4 do formulário multi-step',
   'Integração de leads (destino real dos envios do formulário)',
   'Textos oficiais de Termos de Uso e Política de Privacidade',
@@ -269,6 +266,15 @@ export const FAQ = {
     'Preencher o formulário garante a conversa?',
     'Posso participar com meu sócio ou líder comercial?',
     'Meus dados ficam seguros?',
+  ],
+  respostas: [
+    'Uma análise estratégica baseada no Método 5D, que identifica gargalos, oportunidades e caminhos para acelerar a performance e a rentabilidade do seu negócio.',
+    'Aproximadamente 60 minutos para uma conversa estratégica e personalizada sobre sua operação.',
+    'Saber vender é diferente de operar em alta performance. Avaliamos como transformar potencial comercial em resultados consistentes, previsíveis e rentáveis.',
+    'Sim. Mais importante do que possuir processos é garantir que sejam executados com excelência e gerem os resultados esperados.',
+    'Não. Cada solicitação será analisada para identificar o alinhamento entre os desafios da empresa e a metodologia Dealer Evolution®.',
+    'Sim. Inclusive, recomendamos a participação dos principais tomadores de decisão da empresa.',
+    'A confidencialidade é um princípio da Dealer Evolution®. Suas informações serão tratadas conforme nossa Política de Privacidade e a LGPD.',
   ],
 }
 

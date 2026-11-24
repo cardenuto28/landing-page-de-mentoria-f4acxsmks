@@ -50,7 +50,7 @@ export default function Faq() {
                   hidden={!open}
                   className="pb-5 text-[17px] text-[#BDBDBD]"
                 >
-                  {/* Resposta pendente de definição do proprietário */}
+                  {FAQ.respostas[i]}
                 </div>
               </div>
             )
