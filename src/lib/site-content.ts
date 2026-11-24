@@ -12,11 +12,11 @@ export const BRAND = {
 /**
  * PENDÊNCIAS DO PROPRIETÁRIO — nada abaixo está simulado; são itens que só o
  * dono do projeto pode fornecer:
- * - FOTOS ORIGINAIS DO PDF: as fotografias de Ricardo Cardenuto das seções
- *   Hero e Quem Conduz não puderam ser extraídas do PDF (arquivo 100% imagem).
- *   Enquanto os arquivos não existirem em src/assets/, o site usa um
- *   placeholder SVG local sinalizado ("Foto original do PDF pendente").
- *   Ao receber as fotos, salvá-las em src/assets/ e apontar os <img> para elas.
+ * - FOTO ORIGINAL DO PDF: a fotografia de Ricardo Cardenuto da seção Hero não
+ *   pôde ser extraída do PDF (arquivo 100% imagem). Enquanto o arquivo
+ *   não existir em src/assets/, o Hero usa um placeholder SVG local sinalizado
+ *   ("Foto original do PDF pendente"). A foto de Quem Conduz já foi recebida.
+ *   Ao receber a foto do Hero, salvá-la em src/assets/ e apontar o <img> para ela.
  * - RESPOSTAS DO FAQ: as 7 perguntas estão na prancha, mas as respostas
  *   ainda não foram definidas pelo proprietário.
  * - ETAPAS 2–4 DO FORMULÁRIO: a infraestrutura multi-step está pronta; as
@@ -27,7 +27,7 @@ export const BRAND = {
  *   conteúdo placeholder, aguardando texto oficial.
  */
 export const PENDENCIAS_DO_PROPRIETARIO = [
-  'Fotos originais do PDF (Ricardo Cardenuto — Hero e Quem Conduz)',
+  'Foto original do PDF (Ricardo Cardenuto — Hero)',
   'Respostas das 7 perguntas do FAQ',
   'Perguntas das etapas 2–4 do formulário multi-step',
   'Integração de leads (destino real dos envios do formulário)',
