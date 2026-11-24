@@ -23,7 +23,7 @@ export default function Hero() {
         {/* Coluna da foto */}
         <figure className="relative overflow-hidden rounded-2xl">
           <img
-            src={fotoPendente}
+            src="/visual-edits/fotos-rick2-ede6bf0a.jpg"
             alt={HERO.photoAlt}
             loading="eager"
             width={480}
