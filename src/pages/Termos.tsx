@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Shield } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { ArrowLeft } from 'lucide-react'
 
 export default function Termos() {
   useEffect(() => {
@@ -9,21 +8,20 @@ export default function Termos() {
   }, [])
 
   return (
-    <div className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8">
+    <div className="mx-auto max-w-3xl space-y-8 px-5 py-16 sm:py-24">
       <div>
-        <Button asChild variant="ghost" size="sm" className="text-slate-400 hover:text-white mb-6">
-          <Link to="/">
-            <ArrowLeft className="h-4 w-4 mr-2" /> Voltar para o início
-          </Link>
-        </Button>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#E11D2E]/10 text-[#FF5A6B] border border-[#E11D2E]/20 mb-3">
-          <Shield className="h-3.5 w-3.5" /> Condições Gerais
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white">Termos de Uso</h1>
-        <p className="text-xs text-slate-400 mt-1">Última atualização: Janeiro de 2025</p>
+        <Link
+          to="/"
+          className="mb-6 inline-flex items-center gap-2 text-sm text-[#969696] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5AC42]"
+        >
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Voltar para o início
+        </Link>
+        <h1 className="text-3xl font-bold text-[#F5F5F5] sm:text-4xl">Termos de Uso</h1>
+        <p className="mt-1 text-xs text-[#969696]">Última atualização: Janeiro de 2025</p>
       </div>
 
-      <div className="space-y-6 text-sm text-slate-300 leading-relaxed bg-[#0E1526] p-8 rounded-2xl border border-white/[0.08]">
+      {/* Texto legal PENDENTE de definição do proprietário — conteúdo atual é o anterior à prancha */}
+      <div className="space-y-6 rounded-[14px] border border-[#262626] bg-[#141414] p-8 text-[17px] leading-relaxed text-[#BDBDBD]">
         <section className="space-y-2">
           <h2 className="text-base font-bold text-white">1. Objeto e Natureza do Serviço</h2>
           <p>
@@ -33,7 +31,6 @@ export default function Termos() {
             na metodologia Dealer Evolution®.
           </p>
         </section>
-
         <section className="space-y-2">
           <h2 className="text-base font-bold text-white">2. Propriedade Intelectual</h2>
           <p>
@@ -43,7 +40,6 @@ export default function Termos() {
             reprodução, revenda ou cessão de acessos a terceiros sem autorização prévia por escrito.
           </p>
         </section>
-
         <section className="space-y-2">
           <h2 className="text-base font-bold text-white">3. Agendamento e Remarcação de Sessões</h2>
           <p>
@@ -52,7 +48,6 @@ export default function Termos() {
             comunicadas poderão ser consideradas sessão realizada.
           </p>
         </section>
-
         <section className="space-y-2">
           <h2 className="text-base font-bold text-white">4. Isenção de Promessa de Ganhos Fixos</h2>
           <p>
@@ -62,13 +57,12 @@ export default function Termos() {
             faturamento automático ou garantia de êxito econômico é expressa ou implícita.
           </p>
         </section>
-
         <section className="space-y-2">
           <h2 className="text-base font-bold text-white">5. Canal de Atendimento</h2>
           <p>
             Para esclarecimentos sobre estes termos ou solicitações administrativas, entre em
             contato via e-mail em{' '}
-            <a href="mailto:contato@dealerevolution.com.br" className="text-[#E11D2E] underline">
+            <a href="mailto:contato@dealerevolution.com.br" className="text-[#ED7620] underline">
               contato@dealerevolution.com.br
             </a>
             .

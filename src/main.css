@@ -1,350 +1,102 @@
-/* Global styles - Theme, font, utilities, animations and global components */
-
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   DEALER EVOLUTION — SISTEMA DE DESIGN DA PRANCHA
+   Fonte: PDF prancha_dealer_evolution_corrida (anexo)
+   ============================================================ */
+
+:root {
+  --preto: #0b0b0b;
+  --grafite: #121212;
+  --grafite-2: #141414;
+  --borda: #262626;
+  --branco: #f5f5f5;
+  --cinza-2: #bdbdbd;
+  --cinza-1: #969696;
+  --laranja: #ed7620;
+  --dourado: #f5ac42;
+  --circulo: #202020;
+  --texto-botao: #080808;
+
+  color-scheme: dark;
+}
+
 @layer base {
-  :root {
-    color-scheme: dark;
-    /* Midnight navy base: #0A0E1A (hsl 224 45% 7%) */
-    --background: 224 45% 7%;
-    --foreground: 210 40% 98%;
-
-    /* Surfaces / cards: #111827 (hsl 222 47% 11%) */
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-
-    /* Gold accent: #E8A33D (hsl 36 79% 57%) */
-    --primary: 36 79% 57%;
-    --primary-foreground: 224 45% 7%;
-
-    --secondary: 223 35% 18%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 223 35% 16%;
-    --muted-foreground: 215 20% 70%;
-
-    --accent: 36 79% 57%;
-    --accent-foreground: 224 45% 7%;
-
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 223 30% 20%;
-    --input: 223 30% 20%;
-    --ring: 36 79% 57%;
-
-    --radius: 0.75rem;
-
-    --sidebar-background: 224 45% 7%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 36 79% 57%;
-    --sidebar-primary-foreground: 224 45% 7%;
-    --sidebar-accent: 223 35% 18%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 223 30% 20%;
-    --sidebar-ring: 36 79% 57%;
-
-    --chart-1: 36 79% 57%;
-    --chart-2: 14 100% 64%;
-    --chart-3: 160 84% 39%;
-    --chart-4: 42 100% 50%;
-    --chart-5: 220 70% 50%;
-  }
-
-  * {
-    @apply border-border;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
-    font-family: 'Sora', system-ui, sans-serif;
-    background-color: #0a0e1a;
-    color: #f8fafc;
-  }
-
   body {
-    @apply bg-background text-foreground antialiased;
-    background-color: #0a0e1a;
-    min-height: 100dvh;
-    overflow-x: hidden;
+    background: var(--preto);
+    color: var(--branco);
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 
-  /* NEVER REMOVE THIS */
-  section[aria-label='Notifications alt+T'] {
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-}
-
-@layer utilities {
-  /* KEEP ALL THE ANIMATIONS CLASSES THAT ARE USED BELOW */
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fade-out {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-
-  @keyframes fade-in-up {
-    from {
-      transform: translateY(10px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes fade-in-down {
-    from {
-      transform: translateY(-10px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes fade-out-up {
-    from {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateY(-10px);
-      opacity: 0;
-    }
-  }
-
-  @keyframes fade-out-down {
-    from {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateY(10px);
-      opacity: 0;
-    }
-  }
-
-  @keyframes slide-up {
-    from {
-      transform: translateY(10px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slide-down {
-    from {
-      transform: translateY(-10px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes spotlight {
-    from {
-      opacity: 0;
-      transform: translate(-72%, -62%) scale(0.5);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, -40%) scale(1);
-    }
-  }
-
-  .animate-accordion-down {
-    animation: accordion-down 0.2s ease-out;
-  }
-
-  .animate-accordion-up {
-    animation: accordion-up 0.2s ease-out;
-  }
-
-  .animate-fade-in {
-    animation: fade-in 0.5s ease-out;
-  }
-
-  .animate-fade-out {
-    animation: fade-out 0.5s ease-out;
-  }
-
-  .animate-fade-in-up {
-    animation: fade-in-up 0.6s ease-out;
-  }
-
-  .animate-fade-in-down {
-    animation: fade-in-down 0.6s ease-out;
-  }
-
-  .animate-fade-out-up {
-    animation: fade-out-up 0.6s ease-out;
-  }
-
-  .animate-fade-out-down {
-    animation: fade-out-down 0.6s ease-out;
-  }
-
-  .animate-slide-up {
-    animation: slide-up 0.6s ease-out;
-  }
-
-  .animate-slide-down {
-    animation: slide-down 0.6s ease-out;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-spotlight {
-    animation: spotlight 2s ease forwards;
-  }
-
-  /* Specific Design System Animations */
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .animate-marquee {
-    display: flex;
-    width: max-content;
-    animation: marquee 35s linear infinite;
-  }
-
-  .animate-marquee:hover {
-    animation-play-state: paused;
-  }
-
-  @keyframes pulseGlow {
-    0%,
-    100% {
-      box-shadow:
-        0 0 15px -3px rgba(232, 163, 61, 0.4),
-        0 0 6px -2px rgba(255, 107, 74, 0.3);
-    }
-    50% {
-      box-shadow:
-        0 0 30px 4px rgba(232, 163, 61, 0.7),
-        0 0 15px 1px rgba(255, 107, 74, 0.5);
-    }
-  }
-
-  .pulse-glow {
-    animation: pulseGlow 2.8s ease-in-out infinite;
-  }
-
-  @keyframes kenBurns {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-
-  .animate-ken-burns {
-    animation: kenBurns 20s ease-in-out infinite;
-  }
-
-  @keyframes shake {
-    0%,
-    100% {
-      transform: translateX(0);
-    }
-    20%,
-    60% {
-      transform: translateX(-6px);
-    }
-    40%,
-    80% {
-      transform: translateX(6px);
-    }
-  }
-
-  .animate-shake {
-    animation: shake 0.3s ease-in-out;
+  /* Somente os trechos marcados com <em> recebem itálico (convenção da prancha) */
+  em {
+    font-style: italic;
   }
 }
 
-/* Reduced motion backstop */
+@layer components {
+  /* Botão padrão da prancha: gradiente dourado→laranja, texto escuro, raio 10 */
+  .btn-primary,
+  .cta-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 62px;
+    padding: 0 2rem;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--dourado) 0%, var(--laranja) 100%);
+    color: var(--texto-botao);
+    font-weight: 700;
+    font-size: 17px;
+    white-space: nowrap;
+    transition: filter 200ms ease;
+  }
+
+  .btn-primary:hover,
+  .cta-base:hover {
+    filter: brightness(1.08);
+  }
+
+  .btn-small {
+    height: 44px;
+    padding: 0 1.25rem;
+    font-size: 15px;
+  }
+
+  /* Identificador de seção em contorno fino dourado (usado no hero) */
+  .eyebrow-outline {
+    display: inline-block;
+    border: 1px solid var(--dourado);
+    color: var(--dourado);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+  }
+
+  /* Card padrão: fundo grafite, borda discreta, raio 14 */
+  .card-base {
+    background: var(--grafite-2);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    padding: 1.75rem;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  ::before,
-  ::after {
-    animation-duration: 1ms !important;
-    animation-delay: 0s !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 1ms !important;
-    transition-delay: 0s !important;
-    scroll-behavior: auto !important;
-  }
-  .animate-spin {
-    animation-duration: 1.5s !important;
-    animation-iteration-count: infinite !important;
+  html {
+    scroll-behavior: auto;
   }
 }
