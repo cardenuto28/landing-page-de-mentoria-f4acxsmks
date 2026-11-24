@@ -1,5 +1,5 @@
 import { HERO } from '@/lib/site-content'
-import ricardoHero from '@/assets/ricardo-cardenuto-hero.png'
+import fotoPendente from '@/assets/foto-pendente-placeholder.svg'
 
 export default function Hero() {
   return (
@@ -23,7 +23,7 @@ export default function Hero() {
         {/* Coluna da foto */}
         <figure className="relative overflow-hidden rounded-2xl">
           <img
-            src={ricardoHero}
+            src={fotoPendente}
             alt={HERO.photoAlt}
             loading="eager"
             width={480}

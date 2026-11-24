@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="600" viewBox="0 0 480 600" role="img" aria-label="Foto original do PDF pendente">
+  <rect width="480" height="600" fill="#121212"/>
+  <rect x="8" y="8" width="464" height="584" fill="none" stroke="#262626" stroke-width="2"/>
+  <!-- Sinalização abstrata de pessoa: sem fotografia de banco de imagens, conforme briefing -->
+  <g fill="none" stroke="#262626" stroke-width="3">
+    <circle cx="240" cy="250" r="70"/>
+    <path d="M120 480c0-66 54-120 120-120s120 54 120 120"/>
+  </g>
+  <g fill="#262626">
+    <circle cx="240" cy="250" r="64" fill="#1A1A1A"/>
+    <path d="M126 476c0-63 51-114 114-114s114 51 114 114z" fill="#1A1A1A"/>
+  </g>
+  <text x="240" y="520" text-anchor="middle" font-family="Inter, sans-serif" font-size="17" fill="#BDBDBD">Foto original do PDF pendente</text>
+  <text x="240" y="546" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#262626">Ricardo Cardenuto</text>
+</svg>

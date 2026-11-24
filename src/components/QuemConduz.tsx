@@ -1,5 +1,5 @@
 import { QUEM_CONDUZ } from '@/lib/site-content'
-import ricardoQuemConduz from '@/assets/ricardo-cardenuto-quem-conduz.png'
+import fotoPendente from '@/assets/foto-pendente-placeholder.svg'
 
 export default function QuemConduz() {
   return (
@@ -8,7 +8,7 @@ export default function QuemConduz() {
         {/* Coluna esquerda — foto do fundador */}
         <figure className="relative overflow-hidden rounded-2xl">
           <img
-            src={ricardoQuemConduz}
+            src={fotoPendente}
             alt={QUEM_CONDUZ.photoCaption1}
             loading="lazy"
             width={480}
