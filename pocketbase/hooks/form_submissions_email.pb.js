@@ -57,7 +57,13 @@ onRecordAfterCreateSuccess((e) => {
       'Respostas:\n' +
       respostasTexto
 
+    // Remetente: configurações do PocketBase; fallback fixo se vier vazio.
+    const meta = $app.settings().meta
+    const remetenteEndereco = (meta && meta.senderAddress) || EMAIL_FALLBACK
+    const remetenteNome = (meta && meta.senderName) || 'Dealer Evolution'
+
     const mensagem = {
+      from: { address: remetenteEndereco, name: remetenteNome },
       to: [{ address: destino }],
       subject: 'Novo envio do formulário — Dealer Evolution',
       text: corpo,
