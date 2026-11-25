@@ -1,11 +1,13 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import { useSeo } from '@/hooks/use-seo'
 
 export default function Termos() {
-  useEffect(() => {
-    document.title = 'Termos de Uso | Dealer Evolution'
-  }, [])
+  useSeo({
+    title: 'Termos de Uso | Dealer Evolution',
+    description:
+      'Termos de Uso da Dealer Evolution: condições dos programas de mentoria e do diagnóstico estratégico.',
+  })
 
   return (
     <div className="mx-auto max-w-3xl space-y-8 px-5 py-16 sm:py-24">

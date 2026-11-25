@@ -1,11 +1,13 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import { useSeo } from '@/hooks/use-seo'
 
 export default function Privacidade() {
-  useEffect(() => {
-    document.title = 'Política de Privacidade | Dealer Evolution'
-  }, [])
+  useSeo({
+    title: 'Política de Privacidade | Dealer Evolution',
+    description:
+      'Política de Privacidade da Dealer Evolution, em conformidade com a LGPD: como tratamos os dados de contato.',
+  })
 
   return (
     <div className="mx-auto max-w-3xl space-y-8 px-5 py-16 sm:py-24">

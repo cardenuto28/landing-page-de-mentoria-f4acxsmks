@@ -14,8 +14,15 @@ import QuemConduz from '@/components/QuemConduz'
 import Faq from '@/components/Faq'
 import FormSection from '@/components/FormSection'
 import Footer from '@/components/Footer'
+import { useSeo } from '@/hooks/use-seo'
 
 export default function Index() {
+  useSeo({
+    title: 'Dealer Evolution | Mentoria de Alta Performance Comercial para Concessionárias Premium',
+    description:
+      'Mentoria de alta performance comercial para donos, CEOs e diretores comerciais de lojas de veículos premium. Diagnóstico estratégico com o Método 5D da Dealer Evolution.',
+  })
+
   useEffect(() => {
     // Ao entrar ou recarregar a landing, começa no topo (hero), sem restaurar
     // a posição de rolagem anterior. Âncoras (#diagnostico etc.) seguem livres.
