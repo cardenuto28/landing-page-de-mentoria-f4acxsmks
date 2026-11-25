@@ -48,7 +48,7 @@ export const HERO = {
 export const INDICADORES = [
   { numero: '27 anos', descricao: 'em gestão comercial' },
   { numero: '18', descricao: 'no automotivo premium' },
-  { numero: '+10 anos', descricao: 'em cargos executivos' },
+  { numero: '+14 anos', descricao: 'em cargos executivos' },
   { numero: '+30 prêmios', descricao: 'de performance' },
 ]
 
