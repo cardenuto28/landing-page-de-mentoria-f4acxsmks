@@ -8,6 +8,9 @@ export type Contatos = {
   emailDestino: string
 }
 
+/** E-mail que recebe cópia de cada envio; também é a sugestão inicial no painel. */
+export const EMAIL_COPIA_PADRAO = 'ricardo@dealerevolution.com.br'
+
 export const CONTATOS_PADRAO: Contatos = {
   whatsapp: '',
   telefone: '11999998888',

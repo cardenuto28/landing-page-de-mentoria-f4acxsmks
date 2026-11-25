@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T00:14:57.770Z",
+  "generatedAt": "2026-11-25T00:25:32.358Z",
   "collections": [
     {
       "name": "users",
@@ -179,6 +179,12 @@
           "required": false,
           "system": false,
           "autodateTriggers": ["onCreate", "onUpdate"]
+        },
+        {
+          "name": "email_copia",
+          "type": "text",
+          "required": false,
+          "system": false
         }
       ],
       "indexes": []

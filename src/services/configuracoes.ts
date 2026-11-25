@@ -5,12 +5,14 @@ export type ConfiguracoesRecord = {
   whatsapp: string
   telefone: string
   email_destino: string
+  email_copia: string
 }
 
 export type ConfiguracoesInput = {
   whatsapp: string
   telefone: string
   email_destino: string
+  email_copia: string
 }
 
 /** Lê o registro único de configurações (leitura pública). */

@@ -54,7 +54,7 @@ export default function FormMultiStep() {
   const fields = STEPS[step - 1]
   const allAnswered = ALL_FIELDS.every((f) => (answers[f.id] ?? '').trim() !== '')
   const contatoValido =
-    answers.nome?.trim() !== '' &&
+    (answers.nome ?? '').trim() !== '' &&
     RE_EMAIL.test((answers.email ?? '').trim()) &&
     formatPhoneBR(answers.telefone ?? '').replace(/\D/g, '').length === 11
   const progress = Math.round((step / TOTAL) * 100)
@@ -252,7 +252,7 @@ export default function FormMultiStep() {
           type="button"
           onClick={handleEnviar}
           className="cta-base"
-          disabled={!allAnswered || enviando}
+          disabled={!allAnswered || !contatoValido || enviando}
         >
           {enviando ? 'Enviando…' : FORM.enviar} <span aria-hidden="true">→</span>
         </button>

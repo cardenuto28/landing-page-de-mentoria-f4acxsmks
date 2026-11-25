@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { CONTATOS_PADRAO } from '@/lib/contatos'
+import { CONTATOS_PADRAO, EMAIL_COPIA_PADRAO } from '@/lib/contatos'
 import { getConfiguracoes, salvarConfiguracoes } from '@/services/configuracoes'
 
 export default function AdminConfiguracoes() {
@@ -10,6 +10,7 @@ export default function AdminConfiguracoes() {
   const [whatsapp, setWhatsapp] = useState('')
   const [telefone, setTelefone] = useState('')
   const [emailDestino, setEmailDestino] = useState(CONTATOS_PADRAO.emailDestino)
+  const [emailCopia, setEmailCopia] = useState(EMAIL_COPIA_PADRAO)
   const [carregando, setCarregando] = useState(true)
   const [salvando, setSalvando] = useState(false)
   const [mensagem, setMensagem] = useState('')
@@ -23,6 +24,7 @@ export default function AdminConfiguracoes() {
         setWhatsapp(r.whatsapp ?? '')
         setTelefone(r.telefone ?? '')
         setEmailDestino(r.email_destino ?? CONTATOS_PADRAO.emailDestino)
+        setEmailCopia(r.email_copia || EMAIL_COPIA_PADRAO)
       })
       .catch(() => setErro('Não foi possível carregar as configurações.'))
       .finally(() => setCarregando(false))
@@ -39,6 +41,7 @@ export default function AdminConfiguracoes() {
           whatsapp: whatsapp.trim(),
           telefone: telefone.trim(),
           email_destino: emailDestino.trim(),
+          email_copia: emailCopia.trim(),
         },
         id,
       )
@@ -98,6 +101,17 @@ export default function AdminConfiguracoes() {
               value={emailDestino}
               onChange={(e) => setEmailDestino(e.target.value)}
             />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="cfg-email-copia">E-mail em cópia</Label>
+            <Input
+              id="cfg-email-copia"
+              type="email"
+              autoComplete="off"
+              value={emailCopia}
+              onChange={(e) => setEmailCopia(e.target.value)}
+            />
+            <p className="text-xs text-[#8A8A8A]">Recebe uma cópia de cada envio do formulário.</p>
           </div>
           {mensagem && (
             <p role="status" className="text-sm text-[#BDBDBD]">
