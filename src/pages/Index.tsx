@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Indicadores from '@/components/Indicadores'
@@ -15,6 +16,17 @@ import FormSection from '@/components/FormSection'
 import Footer from '@/components/Footer'
 
 export default function Index() {
+  useEffect(() => {
+    // Ao entrar ou recarregar a landing, começa no topo (hero), sem restaurar
+    // a posição de rolagem anterior. Âncoras (#diagnostico etc.) seguem livres.
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+    if (!window.location.hash) {
+      window.scrollTo(0, 0)
+    }
+  }, [])
+
   return (
     <>
       <Header />
