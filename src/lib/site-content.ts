@@ -242,7 +242,7 @@ export const QUEM_CONDUZ = {
   intro:
     'Começou aos 14 anos como office boy. Aos 18 já era gerente residente de hotel, responsável por pessoas e por decisões que o hóspede percebia.',
   linhas: [
-    'Atuação no Japão e na Austrália antes dos 21 anos.',
+    'Experiência internacional no Japão e na Austrália, com atuação em hotelaria de alto padrão, desenvolvimento comercial e vivência em ambientes multiculturais.',
     'Implantação de 42 concessionárias em território nacional.',
     'Quase 12 anos no Grupo Euro Motors até a direção geral.',
     'Seleção nacional da BMW para assumir a Euro Motors Jundiaí.',
