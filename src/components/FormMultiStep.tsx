@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { FORM } from '@/lib/site-content'
 import { formatPhoneBR } from '@/lib/masks'
+import { useContatos } from '@/hooks/use-contatos'
+import { criarEnvio } from '@/services/submissions'
 
 type Option = { value: string; label: string }
 type Field = {
@@ -35,7 +38,11 @@ export default function FormMultiStep() {
   const [step, setStep] = useState(1)
   const [answers, setAnswers] = useState<Answers>({})
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [enviando, setEnviando] = useState(false)
+  const [erroEnvio, setErroEnvio] = useState('')
   const topRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
+  const contatos = useContatos()
 
   const fields = STEPS[step - 1]
   const allAnswered = ALL_FIELDS.every((f) => (answers[f.id] ?? '').trim() !== '')
@@ -62,6 +69,21 @@ export default function FormMultiStep() {
   function handleContinuar() {
     if (!validateCurrent()) return
     setStep((s) => Math.min(TOTAL, s + 1))
+  }
+
+  async function handleEnviar() {
+    if (enviando || !allAnswered) return
+    setEnviando(true)
+    setErroEnvio('')
+    try {
+      const respostas: Answers = {}
+      for (const f of ALL_FIELDS) respostas[f.id] = (answers[f.id] ?? '').trim()
+      await criarEnvio({ respostas })
+      navigate('/obrigado')
+    } catch {
+      setErroEnvio('Não foi possível enviar sua solicitação agora. Tente novamente em instantes.')
+      setEnviando(false)
+    }
   }
 
   return (
@@ -165,20 +187,25 @@ export default function FormMultiStep() {
         </button>
         <button
           type="button"
-          onClick={handleContinuar}
+          onClick={handleEnviar}
           className="cta-base"
-          disabled={!allAnswered}
+          disabled={!allAnswered || enviando}
         >
-          {FORM.enviar} <span aria-hidden="true">→</span>
+          {enviando ? 'Enviando…' : FORM.enviar} <span aria-hidden="true">→</span>
         </button>
       </div>
+      {erroEnvio && (
+        <p role="alert" className="mt-4 text-sm" style={{ color: 'var(--laranja)' }}>
+          {erroEnvio}
+        </p>
+      )}
       {!allAnswered && (
         <p className="mt-3 text-sm" style={{ color: 'var(--cinza-1)' }}>
           Responda todos os campos para habilitar o envio.
         </p>
       )}
       <p className="mt-6 text-sm" style={{ color: 'var(--cinza-1)' }}>
-        Suporte a telefone: {formatPhoneBR('11999998888')} · Nenhum dado é enviado neste ambiente.
+        Suporte a telefone: {formatPhoneBR(contatos.telefone)}
       </p>
     </div>
   )

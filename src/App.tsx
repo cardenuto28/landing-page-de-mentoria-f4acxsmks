@@ -8,6 +8,7 @@ import Obrigado from './pages/Obrigado'
 import Termos from './pages/Termos'
 import Privacidade from './pages/Privacidade'
 import NotFound from './pages/NotFound'
+import Admin from './pages/Admin'
 import Layout from './components/Layout'
 
 // ONLY IMPORT AND RENDER WORKING PAGES, NEVER ADD PLACEHOLDER COMPONENTS OR PAGES IN THIS FILE
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/termos" element={<Termos />} />
           <Route path="/privacidade" element={<Privacidade />} />
         </Route>
+        <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </TooltipProvider>
