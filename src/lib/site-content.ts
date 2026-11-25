@@ -17,8 +17,9 @@ export const BRAND = {
  *   não existir em src/assets/, o Hero usa um placeholder SVG local sinalizado
  *   ("Foto original do PDF pendente"). A foto de Quem Conduz já foi recebida.
  *   Ao receber a foto do Hero, salvá-la em src/assets/ e apontar o <img> para ela.
- * - ETAPAS 2–4 DO FORMULÁRIO: a infraestrutura multi-step está pronta; as
- *   perguntas dessas etapas aguardam definição do proprietário.
+ * - ETAPAS 3–4 DO FORMULÁRIO: a infraestrutura multi-step está pronta; as
+ *   perguntas dessas etapas aguardam definição do proprietário. A etapa 2 pede
+ *   nome, e-mail e telefone do visitante.
  * - INTEGRAÇÃO DE LEADS: o formulário não tem backend; destino real dos
  *   leads (e-mail/CRM/WhatsApp) a definir.
  * - TEXTOS LEGAIS: páginas de Termos de Uso e Política de Privacidade com
@@ -26,7 +27,7 @@ export const BRAND = {
  */
 export const PENDENCIAS_DO_PROPRIETARIO = [
   'Foto original do PDF (Ricardo Cardenuto — Hero)',
-  'Perguntas das etapas 2–4 do formulário multi-step',
+  'Perguntas das etapas 3–4 do formulário multi-step',
   'Integração de leads (destino real dos envios do formulário)',
   'Textos oficiais de Termos de Uso e Política de Privacidade',
 ]
@@ -318,8 +319,20 @@ export const FORM = {
       opcoes: ['1 a 5', '6 a 15', '16 a 30', 'Mais de 30'],
     },
   ],
-  // ETAPAS 2–4: infraestrutura pronta, perguntas PENDENTES de definição do proprietário.
-  etapasPendentes: 3,
+  // ETAPAS 3–4: infraestrutura pronta, perguntas PENDENTES de definição do proprietário.
+  // ETAPA 2: dados de contato do visitante (nome, e-mail, telefone).
+  contatoEtapa2: {
+    perguntaNome: 'Qual é o seu nome?',
+    perguntaEmail: 'Qual é o seu e-mail?',
+    perguntaTelefone: 'Qual é o seu telefone com DDD?',
+    placeholderNome: 'Seu nome completo',
+    placeholderEmail: 'voce@empresa.com.br',
+    placeholderTelefone: '(11) 98765-4321',
+    erroNome: 'Informe seu nome.',
+    erroEmail: 'Informe um e-mail válido.',
+    erroTelefone: 'Informe um telefone com DDD, ex. (11) 98765-4321.',
+  },
+  etapasPendentes: 2,
 }
 
 export const FOOTER = {

@@ -19,7 +19,8 @@ type Answers = Record<string, string>
 
 const TOTAL = 4
 
-// ETAPAS 2–4: perguntas PENDENTES de definição do proprietário — estrutura pronta, sem conteúdo inventado.
+// ETAPA 2: dados de contato do visitante (gravados em form_submissions: nome, email, telefone).
+// ETAPAS 3–4: perguntas PENDENTES de definição do proprietário — estrutura pronta, sem conteúdo inventado.
 const STEPS: Field[][] = [
   FORM.camposEtapa1.map((f) => ({
     id: f.id,
@@ -27,12 +28,18 @@ const STEPS: Field[][] = [
     type: 'select' as const,
     options: f.opcoes.map((o) => ({ value: o, label: o })),
   })),
-  [],
+  [
+    { id: 'nome', pergunta: FORM.contatoEtapa2.perguntaNome, type: 'text' as const },
+    { id: 'email', pergunta: FORM.contatoEtapa2.perguntaEmail, type: 'email' as const },
+    { id: 'telefone', pergunta: FORM.contatoEtapa2.perguntaTelefone, type: 'tel' as const },
+  ],
   [],
   [],
 ]
 
 const ALL_FIELDS = STEPS.flat()
+const CONTATO = FORM.contatoEtapa2
+const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
 export default function FormMultiStep() {
   const [step, setStep] = useState(1)
@@ -46,6 +53,10 @@ export default function FormMultiStep() {
 
   const fields = STEPS[step - 1]
   const allAnswered = ALL_FIELDS.every((f) => (answers[f.id] ?? '').trim() !== '')
+  const contatoValido =
+    answers.nome?.trim() !== '' &&
+    RE_EMAIL.test((answers.email ?? '').trim()) &&
+    formatPhoneBR(answers.telefone ?? '').replace(/\D/g, '').length === 11
   const progress = Math.round((step / TOTAL) * 100)
 
   useEffect(() => {
@@ -60,7 +71,19 @@ export default function FormMultiStep() {
   function validateCurrent(): boolean {
     const nextErrors: Record<string, string> = {}
     for (const f of fields) {
-      if ((answers[f.id] ?? '').trim() === '') nextErrors[f.id] = 'Selecione uma opção.'
+      if (f.type === 'text') {
+        if ((answers[f.id] ?? '').trim() === '') nextErrors[f.id] = CONTATO.erroNome
+      } else if (f.type === 'email') {
+        if (!RE_EMAIL.test((answers[f.id] ?? '').trim())) nextErrors[f.id] = CONTATO.erroEmail
+      } else if (f.type === 'tel') {
+        const digitos = (answers[f.id] ?? '').replace(/\D/g, '')
+        const dddValido =
+          /^(1[1-9]|2[12478]|3[1234578]|4[1-9]|5[1345]|6[1-9]|7[13457]|8[1-9]|9[1-9])/
+        if (digitos.length !== 11 || !dddValido.test(digitos))
+          nextErrors[f.id] = CONTATO.erroTelefone
+      } else if ((answers[f.id] ?? '').trim() === '') {
+        nextErrors[f.id] = 'Selecione uma opção.'
+      }
     }
     setErrors(nextErrors)
     return Object.keys(nextErrors).length === 0
@@ -78,7 +101,12 @@ export default function FormMultiStep() {
     try {
       const respostas: Answers = {}
       for (const f of ALL_FIELDS) respostas[f.id] = (answers[f.id] ?? '').trim()
-      await criarEnvio({ respostas })
+      await criarEnvio({
+        nome: (answers.nome ?? '').trim(),
+        email: (answers.email ?? '').trim(),
+        telefone: formatPhoneBR(answers.telefone ?? ''),
+        respostas,
+      })
       navigate('/obrigado')
     } catch {
       setErroEnvio('Não foi possível enviar sua solicitação agora. Tente novamente em instantes.')
@@ -131,34 +159,69 @@ export default function FormMultiStep() {
               >
                 {f.pergunta}
               </label>
-              <div className="relative">
-                <select
+              {f.type === 'select' ? (
+                <div className="relative">
+                  <select
+                    id={`field-${f.id}`}
+                    value={answers[f.id] ?? ''}
+                    onChange={(e) => setValue(f.id, e.target.value)}
+                    autoComplete="off"
+                    aria-invalid={!!errors[f.id]}
+                    aria-describedby={errors[f.id] ? `error-${f.id}` : undefined}
+                    className="w-full appearance-none rounded-[10px] border px-4 py-3.5 pr-10 text-base outline-none transition-colors focus-visible:ring-2"
+                    style={{
+                      background: 'var(--grafite)',
+                      borderColor: errors[f.id] ? 'var(--laranja)' : 'var(--cinza-3)',
+                      color: (answers[f.id] ?? '') === '' ? 'var(--cinza-1)' : 'var(--branco)',
+                    }}
+                  >
+                    <option value="">{FORM.placeholderSelect}</option>
+                    {f.options?.map((o) => (
+                      <option key={o.value} value={o.value}>
+                        {o.label}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown
+                    aria-hidden="true"
+                    className="pointer-events-none absolute right-3.5 top-1/2 h-5 w-5 -translate-y-1/2"
+                    style={{ color: 'var(--cinza-1)' }}
+                  />
+                </div>
+              ) : (
+                <input
                   id={`field-${f.id}`}
-                  value={answers[f.id] ?? ''}
-                  onChange={(e) => setValue(f.id, e.target.value)}
-                  autoComplete="off"
+                  type={f.type}
+                  value={
+                    f.type === 'tel' ? formatPhoneBR(answers[f.id] ?? '') : (answers[f.id] ?? '')
+                  }
+                  onChange={(e) =>
+                    setValue(
+                      f.id,
+                      f.type === 'tel' ? formatPhoneBR(e.target.value) : e.target.value,
+                    )
+                  }
+                  placeholder={
+                    f.type === 'tel'
+                      ? CONTATO.placeholderTelefone
+                      : f.type === 'email'
+                        ? CONTATO.placeholderEmail
+                        : CONTATO.placeholderNome
+                  }
+                  autoComplete={
+                    f.type === 'tel' ? 'tel-national' : f.type === 'email' ? 'email' : 'name'
+                  }
+                  inputMode={f.type === 'tel' ? 'tel' : undefined}
                   aria-invalid={!!errors[f.id]}
                   aria-describedby={errors[f.id] ? `error-${f.id}` : undefined}
-                  className="w-full appearance-none rounded-[10px] border px-4 py-3.5 pr-10 text-base outline-none transition-colors focus-visible:ring-2"
+                  className="w-full rounded-[10px] border px-4 py-3.5 text-base outline-none transition-colors focus-visible:ring-2"
                   style={{
                     background: 'var(--grafite)',
                     borderColor: errors[f.id] ? 'var(--laranja)' : 'var(--cinza-3)',
                     color: (answers[f.id] ?? '') === '' ? 'var(--cinza-1)' : 'var(--branco)',
                   }}
-                >
-                  <option value="">{FORM.placeholderSelect}</option>
-                  {f.options?.map((o) => (
-                    <option key={o.value} value={o.value}>
-                      {o.label}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown
-                  aria-hidden="true"
-                  className="pointer-events-none absolute right-3.5 top-1/2 h-5 w-5 -translate-y-1/2"
-                  style={{ color: 'var(--cinza-1)' }}
                 />
-              </div>
+              )}
               {errors[f.id] && (
                 <p
                   id={`error-${f.id}`}
