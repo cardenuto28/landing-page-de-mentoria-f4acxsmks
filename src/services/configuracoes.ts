@@ -6,6 +6,7 @@ export type ConfiguracoesRecord = {
   telefone: string
   email_destino: string
   email_copia: string
+  webhook_url: string
 }
 
 export type ConfiguracoesInput = {
@@ -13,6 +14,13 @@ export type ConfiguracoesInput = {
   telefone: string
   email_destino: string
   email_copia: string
+  webhook_url: string
+}
+
+export type WebhookTesteResult = {
+  ok: boolean
+  status: number
+  mensagem: string
 }
 
 /** Lê o registro único de configurações (leitura pública). */
@@ -25,4 +33,9 @@ export async function getConfiguracoes(): Promise<ConfiguracoesRecord | null> {
 export function salvarConfiguracoes(input: ConfiguracoesInput, id?: string) {
   if (id) return pb.collection('configuracoes').update<ConfiguracoesRecord>(id, input)
   return pb.collection('configuracoes').create<ConfiguracoesRecord>(input)
+}
+
+/** Dispara um POST de teste para a URL salva do webhook (somente administradores). */
+export function testarWebhook() {
+  return pb.send<WebhookTesteResult>('/backend/v1/webhook/teste', { method: 'POST' })
 }

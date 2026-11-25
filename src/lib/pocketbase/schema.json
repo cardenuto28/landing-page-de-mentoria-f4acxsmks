@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T00:41:27.282Z",
+  "generatedAt": "2026-11-25T02:20:30.079Z",
   "collections": [
     {
       "name": "users",
@@ -183,6 +183,12 @@
         {
           "name": "email_copia",
           "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "webhook_url",
+          "type": "url",
           "required": false,
           "system": false
         }

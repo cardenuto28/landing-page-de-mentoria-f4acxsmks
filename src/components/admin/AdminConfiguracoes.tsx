@@ -3,7 +3,12 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { CONTATOS_PADRAO, EMAIL_COPIA_PADRAO } from '@/lib/contatos'
-import { getConfiguracoes, salvarConfiguracoes } from '@/services/configuracoes'
+import {
+  getConfiguracoes,
+  salvarConfiguracoes,
+  testarWebhook,
+  type WebhookTesteResult,
+} from '@/services/configuracoes'
 
 export default function AdminConfiguracoes() {
   const [id, setId] = useState<string | undefined>(undefined)
@@ -11,8 +16,11 @@ export default function AdminConfiguracoes() {
   const [telefone, setTelefone] = useState('')
   const [emailDestino, setEmailDestino] = useState(CONTATOS_PADRAO.emailDestino)
   const [emailCopia, setEmailCopia] = useState(EMAIL_COPIA_PADRAO)
+  const [webhookUrl, setWebhookUrl] = useState('')
   const [carregando, setCarregando] = useState(true)
   const [salvando, setSalvando] = useState(false)
+  const [testando, setTestando] = useState(false)
+  const [resultadoTeste, setResultadoTeste] = useState<WebhookTesteResult | null>(null)
   const [mensagem, setMensagem] = useState('')
   const [erro, setErro] = useState('')
 
@@ -25,6 +33,7 @@ export default function AdminConfiguracoes() {
         setTelefone(r.telefone ?? '')
         setEmailDestino(r.email_destino ?? CONTATOS_PADRAO.emailDestino)
         setEmailCopia(r.email_copia || EMAIL_COPIA_PADRAO)
+        setWebhookUrl(r.webhook_url ?? '')
       })
       .catch(() => setErro('Não foi possível carregar as configurações.'))
       .finally(() => setCarregando(false))
@@ -42,6 +51,7 @@ export default function AdminConfiguracoes() {
           telefone: telefone.trim(),
           email_destino: emailDestino.trim(),
           email_copia: emailCopia.trim(),
+          webhook_url: webhookUrl.trim(),
         },
         id,
       )
@@ -51,6 +61,22 @@ export default function AdminConfiguracoes() {
       setErro('Não foi possível salvar. Verifique os campos e tente novamente.')
     } finally {
       setSalvando(false)
+    }
+  }
+
+  async function handleTestarWebhook() {
+    setResultadoTeste(null)
+    setTestando(true)
+    try {
+      setResultadoTeste(await testarWebhook())
+    } catch {
+      setResultadoTeste({
+        ok: false,
+        status: 0,
+        mensagem: 'Não foi possível executar o teste. Verifique a conexão e tente novamente.',
+      })
+    } finally {
+      setTestando(false)
     }
   }
 
@@ -112,6 +138,41 @@ export default function AdminConfiguracoes() {
               onChange={(e) => setEmailCopia(e.target.value)}
             />
             <p className="text-xs text-[#8A8A8A]">Recebe uma cópia de cada envio do formulário.</p>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="cfg-webhook">URL do Webhook</Label>
+            <Input
+              id="cfg-webhook"
+              type="url"
+              inputMode="url"
+              autoComplete="off"
+              placeholder="https://seu-crm.com/webhook"
+              value={webhookUrl}
+              onChange={(e) => setWebhookUrl(e.target.value)}
+            />
+            <p className="text-xs text-[#8A8A8A]">
+              Os envios do formulário serão enviados para essa URL via POST. Deixe vazio para
+              desligar.
+            </p>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleTestarWebhook}
+              disabled={testando}
+            >
+              {testando ? 'Testando…' : 'Testar webhook'}
+            </Button>
+            <p className="text-xs text-[#8A8A8A]">
+              O teste usa a URL salva. Salve as configurações antes de testar uma URL nova.
+            </p>
+            {resultadoTeste && (
+              <p
+                role={resultadoTeste.ok ? 'status' : 'alert'}
+                className={resultadoTeste.ok ? 'text-sm text-[#BDBDBD]' : 'text-sm text-[#ED7620]'}
+              >
+                {resultadoTeste.mensagem}
+              </p>
+            )}
           </div>
           {mensagem && (
             <p role="status" className="text-sm text-[#BDBDBD]">
